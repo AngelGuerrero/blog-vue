@@ -14,28 +14,34 @@ router.get('/', (req, res, next) => {
   }).then(users => res.json(users))
 });
 
-/* POST create a new user */
-router.post('/', (req, res, next) => {
-  User.create(req.body).then(user => res.json(user))
-});
-
 /* GET and existing user */
 router.get('/:id', (req, res, next) => {
   User.findAll({
-      where: {
-        id: req.params.id
-      }
+      where: { id: req.params.id }
     })
     .then(user => res.json(user))
     .catch(err => res.status(500).json(err));
 });
 
+/* GET and user with its posts */
+router.get('/:id/posts', (req, res, next) => {
+  User.findAll({
+    where: { id: req.params.id },
+    include: [{ model: Post }]
+  })
+  .then(user => res.json(user))
+  .catch(err => res.status(500).json(err));
+})
+
+/* POST create a new user */
+router.post('/', (req, res, next) => {
+  User.create(req.body).then(user => res.json(user))
+});
+
 /* PUT update and existing resource */
 router.put('/:id', (req, res, next) => {
   User.update(req.body, {
-      where: {
-        id: req.params.id
-      }
+      where: { id: req.params.id }
     })
     .then(affectedRows => {
       if (affectedRows == 0) return res.status(404).json({
