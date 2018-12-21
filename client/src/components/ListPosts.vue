@@ -7,10 +7,11 @@
       h3.aside-left__title {{ store.app_name }}
     nav
       router-link(v-for="post in store.responses.posts.data"
+                  class="nav__item"
                   :key="post.id"
                   :to="{ name: 'post', params: { id: post.id }}"
                   @click.native="dissapear()"
-                  ) {{ post.id }}. {{ post.title }}
+                  ) {{ post.title }}
       .message(v-if="error || loading" :class="{ error }")
         h4.message__msg {{ message }}
 </template>
@@ -63,14 +64,14 @@ export default {
 @import '@/assets/scss/base.scss';
 
 .screen {
-  background-color: #ffffff;
+  background-color: #202020;
   width: 100%;
   height: 100%;
   position: fixed;
   top: 0;
   bottom: 0;
   z-index: -1;
-  opacity: 0.6;
+  opacity: 0.5;
 }
 
 .aside-left {
@@ -85,8 +86,8 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: #f1f1f1;
-  box-shadow: 5px 10px 15px #dadada;
+  background-color: #ffffff;
+  box-shadow: 5px 5px 25px #555555;
 
   &__title {
     display: flex;
@@ -100,10 +101,14 @@ export default {
 .aside__header {
   display: flex;
   align-items: center;
-  height: $nav-height;
+  min-height: $nav-height;
+  max-height: $nav-height;
   padding: 10px;
-  background-color: #202020;
-  color: white;
+  // background-color: #353535;
+  // background-color: lighten($color: #777777, $amount: 50);
+  background-color: black;
+  // color: white;
+      color: #7eff89;
 }
 
 nav {
@@ -111,15 +116,17 @@ nav {
   flex-direction: column;
   overflow: auto;
   flex-grow: 1;
+  background-color: white;
 
-  a {
+  .nav__item {
     flex-grow: 1;
     padding: 7px 12px;
-    color: $btn-primary--bgcolor;
+    color: #353535;
     text-decoration: none;
+    text-transform: capitalize;
 
     &:hover {
-      background-color: #7da6fd;
+      background-color: $btn-primary--bgcolor;
       color: white;
     }
   }

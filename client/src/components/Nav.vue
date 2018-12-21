@@ -35,16 +35,19 @@ export default {
 @import "@/assets/scss/base.scss";
 
 .router-link-active {
-  border: 1px solid;
+  background-color: $btn-primary--bgcolor;
+  color: white;
 }
 
 .nav {
-  padding: 10px;
-  box-shadow: 1px 1px 10px #dadada;
-  height: $nav-height;
+  padding: $nav-padding;
+  min-height: $nav-height;
+  max-height: $nav-height;
   display: flex;
   align-content: center;
   justify-content: space-between;
+  box-shadow: 1px 1px 5px #dadada;
+  // border-bottom: 1px solid #f1f1f1;
 }
 
 .brand {
@@ -71,7 +74,6 @@ export default {
     @extend %btn;
     display: flex;
     align-items: center;
-    color: $btn-primary--bgcolor;
   }
 }
 

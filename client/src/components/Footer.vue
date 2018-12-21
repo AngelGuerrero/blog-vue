@@ -1,6 +1,19 @@
 <template lang="pug">
   .footer
-    h5.footer__title Created with Vue.js + Sequelize + Node.js + Express.js <3
+    p.footer__title Made with
+    p.footer__title #[i.fas.fa-heartbeat]
+    p.footer__title.
+      + #[a(href="https://sass-lang.com/") Sass]
+    p.footer__title.
+      + #[a(href="https://pugjs.org/api/getting-started.html") Pug.js]
+    p.footer__title.
+      + #[a(href="http://vuejs.org/") Vue.js]
+    p.footer__title.
+      + #[a(href="https://expressjs.com/es/") Express.js]
+    p.footer__title.
+      + #[a(href="https://nodejs.org/es/") Node.js]
+    p.footer__title.
+      + #[a(href="http://docs.sequelizejs.com/") Sequelize.js]
 </template>
 
 <script>
@@ -12,16 +25,16 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/scss/base.scss";
 
-.footer {
-  padding: 15px;
-  height: $footer-height;
-  background-color: lighten($color: #777777, $amount: 50);
+.footer__title {
+  color: #7eff89;
+}
 
-  &__title {
-    margin: 0;
-    padding: 0;
-    color: #777777;
-    text-align: center;
-  }
+a {
+  color: aqua;
+}
+
+i {
+  margin: 10px;
+  color: #ff7777;
 }
 </style>

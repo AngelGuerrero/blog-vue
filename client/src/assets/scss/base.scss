@@ -1,23 +1,29 @@
-// Import external stylesheets
+// External fonts
+@import url('https://fonts.googleapis.com/css?family=Major+Mono+Display');
 
+// Palletes
+$btn-primary--bgcolor: #8c5bff;
 $btn-primary--bgcolor: #8c5bff;
 $btn-danger--bgcolor: #fc4f31;
 $btn-warning--bgcolor: #ffef5b;
 $btn-success--bgcolor: #3ea53e;
 $btn-default--bgcolor: #cecece;
 
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  font-size: 14px;
-}
-
 // 
 // Size components
-// 
-$nav-height: 35px;
-$footer-height: 20px;
+//
+
+// Post
+$post-margin-top: 0px;
+$post-margin-bottom: 0px;
+
+// Nav
+$nav-height: 30px;
+$nav-padding: 10px;
+
+// Footer
+$footer-height: 30px;
+$footer-padding: 10px;
 
 //
 // Functions
@@ -36,7 +42,6 @@ $footer-height: 20px;
 @mixin btnproperties($bg, $color) {
   background-color: $bg;
   color: $color;
-  // box-shadow: 1px 1px 5px $bg;
   
   &:hover {
     background-color: lighten($color: $bg, $amount: 5);
@@ -80,18 +85,22 @@ $footer-height: 20px;
 //
 // Global classes
 //
-#app {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-size: 14px;
 }
 
-.content {
-  flex-grow: 1;
-  display: flex;
+// Modify all H
+$element: h;
+
+@for $i from 1 through 6 {
+  h#{$i} {
+    font-family: 'Major Mono Display', monospace;
+    margin: 0;
+    padding: 0;
+  }
 }
 
 .error {
@@ -129,13 +138,7 @@ $footer-height: 20px;
 // 
 // Post pages
 // 
-.post {
-  max-width: 800px;
-  margin: auto;
-  padding: 20px;
-  overflow-y: auto;
-  flex-grow: 1;
-  
+.post {  
   .post__header {
     color: #cacaca;
 
@@ -179,4 +182,8 @@ p {
 
 li {
   padding: 10px;
+}
+
+.img__responsive {
+  width: 100%;
 }

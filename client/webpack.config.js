@@ -2,13 +2,6 @@ import path from 'path'
 
 module.exports = {
   module: {
-    entry: {
-      app: './scr/main.js',
-
-      'styles': [
-        './scr/assets/css/animate.css'
-      ]
-    },
     rules: [{
       test: /\.(sass|scss)$/,
       use: [
