@@ -1,0 +1,189 @@
+// External fonts
+@import url('https://fonts.googleapis.com/css?family=Major+Mono+Display');
+
+// Palletes
+$btn-primary--bgcolor: #8c5bff;
+$btn-primary--bgcolor: #8c5bff;
+$btn-danger--bgcolor: #fc4f31;
+$btn-warning--bgcolor: #ffef5b;
+$btn-success--bgcolor: #3ea53e;
+$btn-default--bgcolor: #cecece;
+
+// 
+// Size components
+//
+
+// Post
+$post-margin-top: 0px;
+$post-margin-bottom: 0px;
+
+// Nav
+$nav-height: 30px;
+$nav-padding: 10px;
+
+// Footer
+$footer-height: 30px;
+$footer-padding: 10px;
+
+//
+// Functions
+//
+@function set-color($color) {
+  @if (lightness($color) > 50) {
+    @return #000000;
+  } @else {
+    @return #ffffff;
+  }
+}
+
+//
+// Buttons
+//
+@mixin btnproperties($bg, $color) {
+  background-color: $bg;
+  color: $color;
+  
+  &:hover {
+    background-color: lighten($color: $bg, $amount: 5);
+  }
+}
+
+// Button structure
+%btn {
+  padding: 7px 10px;
+  margin: 3px 5px;
+  border-radius: 2px;
+  text-decoration: none;
+}
+
+// Custom buttons
+.btn-default {
+  @extend %btn;
+  @include btnproperties($btn-default--bgcolor, #333333);
+}
+
+.btn-primary {
+  @extend %btn;
+  @include btnproperties($btn-primary--bgcolor, white);
+}
+
+.btn-danger {
+  @extend %btn;
+  @include btnproperties($btn-danger--bgcolor, white);
+}
+
+.btn-warning {
+  @extend %btn;
+  @include btnproperties($btn-warning--bgcolor, black);
+}
+
+.btn-success {
+  @extend %btn;
+  @include btnproperties($btn-success--bgcolor, white);
+}
+
+//
+// Global classes
+//
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-size: 14px;
+}
+
+// Modify all H
+$element: h;
+
+@for $i from 1 through 6 {
+  h#{$i} {
+    font-family: 'Major Mono Display', monospace;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.error {
+  background: #ffb8ab;
+  color: #ff2b2b;
+}
+
+.dev {
+  border: 1px solid tomato;
+}
+
+.menu-bars {
+  padding: 15px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+
+  &:hover {
+    cursor: pointer;
+    color: white;
+    background-color: $btn-primary--bgcolor;
+  }
+}
+
+.fas {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+// 
+// Post pages
+// 
+.post {  
+  .post__header {
+    color: #cacaca;
+
+    .post__title {
+      color: $btn-primary--bgcolor;
+    }
+  }
+
+  .post__content {
+    color: #222222;
+    padding: 10px 0;
+  }
+  
+  .post__controls {
+    display: flex;
+    padding: 5px 0px;
+
+    a:first-child {
+      margin-left: 0;
+    }
+  }
+  
+  .post__message {
+    background-color: #f0f0f0;
+    color: #757575;
+    border-radius: 3px;
+    margin: 10px 0px;
+    padding: 15px;
+
+    .message__msg {
+      padding: 0;
+      margin: 0;
+    }
+  }
+}
+
+p {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #222222;
+}
+
+li {
+  padding: 10px;
+}
+
+.img__responsive {
+  width: 100%;
+}

@@ -11,6 +11,11 @@
 - mysql2
 - faker
 
+### Intalación de dependencias
+```
+npm i
+```
+
 ### Presets usado en babel
 ```javascript
 {
