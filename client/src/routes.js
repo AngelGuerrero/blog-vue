@@ -1,9 +1,9 @@
 import Welcome from './components/pages/Welcome'
-import Contact from './components/pages/Contact'
 import About from './components/pages/About'
+import Contact from './components/pages/Contact'
+import NotFound from './components/pages/NotFound'
 
-import Post from './components/Post'
-import NotFound from './components/NotFound'
+import Post from './components/Post/Post'
 
 export default [
   {

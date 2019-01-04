@@ -1,17 +1,22 @@
 <template lang="pug">
   .aside-left(class="mobile")
+
     .screen(@click="dissapear()")
+
     header(class="aside__header")
       .menu-bars(@click="dissapear()")
         i(class="fas fa-bars fa-lg bars-icon")
+
       h3.aside-left__title {{ store.app_name }}
+
     nav
-      router-link(v-for="post in store.responses.posts.data"
+      router-link(v-for="post in posts.data"
                   class="nav__item"
                   :key="post.id"
                   :to="{ name: 'post', params: { id: post.id }}"
                   @click.native="dissapear()"
                   ) {{ post.title }}
+
       .message(v-if="error || loading" :class="{ error }")
         h4.message__msg {{ message }}
 </template>
@@ -22,14 +27,27 @@ import store from '@/store'
 import EventBus from '@/EventBus'
 
 export default {
-  name: 'ListPosts',
+  name: 'PostList',
 
   data () {
     return {
-      store,
+      //
+      // Initial states
+      //
+
+      posts: '',
+
+      // Show message if error
       error: false,
+
+      // Show message while loading
       loading: true,
-      message: 'Loading...'
+
+      // Content of message
+      message: 'Loading...',
+
+      // External data
+      store
     }
   },
 
@@ -38,12 +56,14 @@ export default {
   },
 
   methods: {
+    //
     // Get all the posts
+    //
     getPosts () {
       axios.get(`${this.store.endpoint}${this.store.posts}`)
         .then(res => {
           this.loading = false
-          this.store.responses.posts = res
+          this.posts = res
         })
         .catch(err => {
           this.loading = false
@@ -52,7 +72,9 @@ export default {
         })
     },
 
-    // Emit events
+    //
+    // On Emit Events
+    //
     dissapear () {
       EventBus.$emit('change-aside-left-state')
     }
@@ -61,8 +83,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/scss/base.scss';
-
 .screen {
   background-color: #202020;
   width: 100%;
@@ -104,11 +124,8 @@ export default {
   min-height: $nav-height;
   max-height: $nav-height;
   padding: 10px;
-  // background-color: #353535;
-  // background-color: lighten($color: #777777, $amount: 50);
   background-color: black;
-  // color: white;
-      color: #7eff89;
+  color: #7eff89;
 }
 
 nav {
@@ -157,7 +174,6 @@ nav {
 @media screen and (max-width: 425px) {
   .mobile {
     width: 80%;
-    // max-width: 100%;
   }
 }
 </style>

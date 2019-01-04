@@ -1,17 +1,22 @@
 <template lang="pug">
   #app
+
     app-nav
+
     app-list-posts(v-show="asideLeft")
     .main
       router-view
       app-footer
+
 </template>
 
 <script>
 import EventBus from './EventBus'
-import appNav from './components/Nav'
-import appListPosts from './components/ListPosts'
-import appFooter from './components/Footer'
+
+// Components
+import appListPosts from './components/Post/PostList'
+import appNav from './components/Structure/Nav'
+import appFooter from './components/Structure/Footer'
 
 export default {
   name: 'App',
@@ -24,14 +29,12 @@ export default {
 
   data () {
     return {
-      // The aside left loads the projects list
+      // Show aside left
       asideLeft: false
     }
   },
 
   created () {
-    window.addEventListener('resize', this.resize)
-
     // Listen global events from components through EventBus
     EventBus.$on('change-aside-left-state', () => (this.asideLeft = !this.asideLeft))
   }
@@ -39,8 +42,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/assets/scss/base.scss";
-
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
