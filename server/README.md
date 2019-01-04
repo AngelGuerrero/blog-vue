@@ -36,6 +36,10 @@ Comando: `npm i`
 
 Comando: `DEBUG=server:* npm start`
 
+Ó
+
+Comando: `npm run server`
+
 ##### Comando para windows sin nodemon
 
 Comando: `DEBUG=server:* & npm start`
@@ -43,3 +47,16 @@ Comando: `DEBUG=server:* & npm start`
 ##### Comando para cualquier O.S. escuchando cambios en archivos
 
 Comando: `npm run serve`
+
+
+## Comandos para la base de datos
+
+#### Reinicia la base de datos
+Borra la base de datos si es que existe, la crea y ejecuta las migraciones correspondientes.
+
+Comando: `npm run db_reset`
+
+#### Ejecuta los `seeders` para llenar las tablas
+
+Comando: `npm run db_seed`
+
