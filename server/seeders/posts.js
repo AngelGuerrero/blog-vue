@@ -7,27 +7,39 @@ var Tag = models.Tag
 
 async function seeds() {
   let num_post = 20;
+  let max_users = 0;
+  
+  await User.findAndCountAll()
+            .then(res => max_users = res.count)
+            .catch(err => console.log(`${err}`))
 
   // Posts
   let user;
   for (let i = 0; i < num_post; i++) {
+    // Find the user
     try {
-      user = await User.findByPk(Math.floor(Math.random() * 10) + 1)
+      user = await User.findByPk(Math.floor(Math.random() * max_users) + 1)
 
-      if (!user) console.log('User not found')
+      if (!user) throw "User not found"
 
     } catch (e) {
       console.log(`Unexpected error occurred searching user: ${e}`)
     }
 
+    // Create the post
     try {
+      let tags = [];
+      let random = Math.floor(Math.random() * max_users) + 1;
+      
+      for (let i = 0; i < random; i++) {
+        tags.push({ name: faker.lorem.slug() })
+      }
+      
       const post = await Post.create({
         title: faker.lorem.word(),
-        content: faker.lorem.sentence(),
+        content: faker.lorem.paragraphs(),
         UserId: user.id,
-        tags: [{
-          name: faker.lorem.slug()
-        }]
+        tags: tags
       }, {
         include: [{
           model: Tag,

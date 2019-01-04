@@ -4,7 +4,10 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "server": "nodemon ./bin/www --exec babel-node -e js"
+    "server": "nodemon ./bin/www --exec babel-node -e js",
+    "db_reset": "sequelize db:drop && sequelize db:create && sequelize db:migrate",
+    "db_seed": "node seeders/users.js && node seeders/posts.js",
+    "test": "node seeders/test.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
