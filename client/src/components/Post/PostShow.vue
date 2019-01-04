@@ -8,7 +8,7 @@
       .post__content {{ post.content }}
       .post__tags
         .tags__header
-          h5 Tags
+          h3 Tags
         .tags__container
           .tag(v-for="tag in post.tags") {{ tag.name }}
 </template>
