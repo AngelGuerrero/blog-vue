@@ -32,8 +32,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/scss/base.scss";
-
 .router-link-active {
   background-color: $btn-primary--bgcolor;
   color: white;

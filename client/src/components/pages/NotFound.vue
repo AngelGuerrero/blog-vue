@@ -9,7 +9,3 @@ export default {
   name: 'NotFound'
 }
 </script>
-
-<style lang="scss" scoped>
-@import "@/assets/scss/base.scss";
-</style>

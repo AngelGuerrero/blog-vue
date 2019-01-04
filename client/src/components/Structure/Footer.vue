@@ -23,8 +23,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/scss/base.scss";
-
 .footer__title {
   color: #7eff89;
 }
