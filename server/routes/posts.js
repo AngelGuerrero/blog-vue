@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var models = require('../models/index');
+var models = require('../db/models/index');
 var Post = models.Post;
 var Tag = models.Tag;
 var User = models.User;
