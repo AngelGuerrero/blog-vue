@@ -11,6 +11,7 @@
     "db_seed": "node db/seeders/users.js && node db/seeders/posts.js"
   },
   "dependencies": {
+    "babel-register": "^6.26.0",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "dotenv": "^6.2.0",
