@@ -6,4 +6,4 @@ function response(affedtedRows, res) {
   res.status(200).json(affedtedRows);
 };
 
-export { response }
+module.exports = { response }
