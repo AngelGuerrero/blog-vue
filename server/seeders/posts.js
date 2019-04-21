@@ -6,7 +6,7 @@ var Post = models.Post
 var Tag = models.Tag
 
 async function seeds() {
-  let num_post = 20;
+  let num_post = 100;
 
   // Posts
   let user;
