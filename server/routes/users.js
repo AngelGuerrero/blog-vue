@@ -1,75 +1,86 @@
 var express = require('express');
 var router = express.Router();
-var models = require('../models/index');
+var models = require('../db/models/index');
+var {
+  response
+} = require('../lib/common');
 
 var User = models.User
 var Post = models.Post
 
 /* GET users listing. */
 router.get('/', (req, res, next) => {
-  User.findAll({
+  let query = {
     include: [{
       model: Post
     }]
-  }).then(users => res.json(users))
+  };
+
+  User.findAll(query)
+    .then(users => response(users, res))
+    .catch(err => res.status(500).json(err));
 });
 
 /* GET and existing user */
 router.get('/:id', (req, res, next) => {
-  User.findAll({
-      where: { id: req.params.id }
-    })
-    .then(user => res.json(user))
+  let query = {
+    where: {
+      id: req.params.id
+    }
+  };
+
+  User.findAll(query)
+    .then(user => response(user, res))
     .catch(err => res.status(500).json(err));
 });
 
 /* GET and user with its posts */
 router.get('/:id/posts', (req, res, next) => {
-  User.findAll({
-    where: { id: req.params.id },
-    include: [{ model: Post }]
-  })
-  .then(user => res.json(user))
-  .catch(err => res.status(500).json(err));
+  let query = {
+    where: {
+      id: req.params.id
+    },
+    include: [{
+      model: Post
+    }]
+  };
+
+  User.findAll(query)
+    .then(user => response(user, res))
+    .catch(err => res.status(500).json(err));
 })
 
 /* POST create a new user */
 router.post('/', (req, res, next) => {
-  User.create(req.body).then(user => res.json(user))
+  User.create(req.body)
+    .then(user => res.json(user))
+    .catch(err => res.status(500).json(err));
 });
 
 /* PUT update and existing resource */
 router.put('/:id', (req, res, next) => {
-  User.update(req.body, {
-      where: { id: req.params.id }
-    })
-    .then(affectedRows => {
-      if (affectedRows == 0) return res.status(404).json({
-        message: 'Resource not found'
-      });
+  let query = {
+    where: {
+      id: req.params.id
+    }
+  };
 
-      res.status(200).json({
-        affectedRows
-      });
-    });
+  User.update(req.body, query)
+    .then(affectedRows => response(affectedRows, res))
+    .catch(err => res.status(500).json(err));;
 });
 
 /* DELETE and existing resource */
 router.delete('/:id', (req, res, next) => {
-  User.destroy({
-      where: {
-        id: req.params.id
-      }
-    })
-    .then(affectedRows => {
-      if (affectedRows == 0) return res.status(404).json({
-        message: 'Resource not found'
-      })
+  let query = {
+    where: {
+      id: req.params.id
+    }
+  };
 
-      res.status(200).json({
-        affectedRows
-      })
-    })
+  User.destroy(query)
+    .then(affectedRows => response(affectedRows, res))
+    .catch(err => res.status(500).json(err));
 })
 
 module.exports = router;

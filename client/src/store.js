@@ -7,11 +7,5 @@ export default {
 
   // Resources
   users: '/users',
-  posts: '/posts',
-
-  // Responses
-  responses: {
-    users: '',
-    posts: ''
-  }
+  posts: '/posts'
 }
